@@ -51,9 +51,7 @@ public class UserInfoService {
     public UserInfoDTO updateUserInfo(String name, UserInfoDTO userInfoDTO){
         UserInfo userInfo = new UserInfo();
         userInfo.setId(userInfoDTO.getId());
-        //???? 여기서 매개로 받은 name으로 update 해줘야하는 거 아님?
-        //userInfo.setName(userInfoDTO.getName());
-        userInfo.setName(name);
+        userInfo.setName(userInfoDTO.getName());
         userInfo.setAge(userInfoDTO.getAge());
 
         log.debug("userInfo created, id: " + userInfoDTO.getId());
