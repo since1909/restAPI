@@ -28,8 +28,8 @@ public class UserInfoController {
         return userInfoService.updateUserInfo(name, userInfoDTO);
     }
 
-    @DeleteMapping
-    public String delteUserInfo(@PathVariable String name){
+    @DeleteMapping("/userinfo/{name}")
+    public String deleteUserInfo(@PathVariable String name){
         userInfoService.deleteUserInfo(name);
         return "deleted " + name;
     }
