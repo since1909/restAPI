@@ -24,21 +24,15 @@ public class UserInfoService {
     public UserInfoDTO selectUserInfo(String name){
         UserInfo userInfo = userInfoDomainService.getUserInfo(name);
 
-        UserInfoDTO userInfoDTO = new UserInfoDTO();
-        userInfoDTO.setId(userInfo.getId());
-        userInfoDTO.setName(userInfo.getName());
-        userInfoDTO.setAge(userInfo.getAge());
+        UserInfoDTO userInfoDTO = UserInfoDTO.builder(userInfo.getId(), userInfo.getName(), userInfo.getAge())
+                .build();
 
         return userInfoDTO;
     }
 
     public UserInfoDTO createUserInfo(UserInfoDTO userInfoDTO){
-        UserInfo userInfo = new UserInfo();
+        UserInfo userInfo = UserInfo.builder(userInfoDTO).build();
         log.debug("userInfoDTO.getID(): " + userInfoDTO.getId());
-
-        userInfo.setId(userInfoDTO.getId());
-        userInfo.setName(userInfoDTO.getName());
-        userInfo.setAge(userInfoDTO.getAge());
 
         userInfo = userInfoDomainService.createUserInfo(userInfo);
 
@@ -49,10 +43,7 @@ public class UserInfoService {
     }
 
     public UserInfoDTO updateUserInfo(String name, UserInfoDTO userInfoDTO){
-        UserInfo userInfo = new UserInfo();
-        userInfo.setId(userInfoDTO.getId());
-        userInfo.setName(userInfoDTO.getName());
-        userInfo.setAge(userInfoDTO.getAge());
+        UserInfo userInfo = UserInfo.builder(userInfoDTO).build();
 
         log.debug("userInfo created, id: " + userInfoDTO.getId());
         userInfoDomainService.updateUserInfo(userInfo);

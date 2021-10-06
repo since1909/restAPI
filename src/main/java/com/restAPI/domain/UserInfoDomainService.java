@@ -3,6 +3,7 @@ package com.restAPI.domain;
 import com.restAPI.domain.model.UserInfo;
 import com.restAPI.domain.repository.UserInfoRepository;
 
+import com.restAPI.dto.UserInfoDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
@@ -49,6 +50,7 @@ public class UserInfoDomainService {
         log.debug("userinfo1.getID() : " + userInfo1.getId());
         log.debug("userinfo1.getName() : " + userInfo1.getName());
         log.debug("userinfo1.getAge() : " + userInfo1.getAge());
+
         userInfo1.setId(userInfo.getId());
         userInfo1.setName(userInfo.getName());
         userInfo1.setAge(userInfo.getAge());
