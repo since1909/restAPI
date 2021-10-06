@@ -17,8 +17,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -32,7 +31,6 @@ public class UserInfoControllerTest {
 
     @MockBean
     private UserInfoService userInfoTestService;
-
 
     @Test
     @DisplayName("CREATE TEST")
@@ -69,7 +67,7 @@ public class UserInfoControllerTest {
         //when
         final ResultActions actions = mvc.perform(get("/userinfo/{name}", userInfoTestDTO.getName())
                         .contentType(MediaType.APPLICATION_JSON))
-                .andDo(print());
+                        .andDo(print());
         //then
         actions.andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -79,10 +77,25 @@ public class UserInfoControllerTest {
     }
 
     @Test
-    public void updateUserInfo() {
+    @DisplayName("UPDATE TEST")
+    public void updateUserInfo() throws Exception{
+
     }
 
+
     @Test
-    public void deleteUserInfo() {
+    @DisplayName("DELETE BY NAME TEST")
+    public void deleteUserInfo() throws Exception{
+        //given
+        String deleteName = "park";
+        userInfoTestService.deleteUserInfo(deleteName);
+
+        //when
+        final ResultActions actions = mvc.perform(delete("/userinfo/{name}", deleteName)
+                        .contentType(MediaType.APPLICATION_JSON))
+                        .andDo(print());
+        //then
+        actions.andExpect(status().isOk())
+                .andDo(print());
     }
 }
