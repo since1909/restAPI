@@ -79,9 +79,27 @@ public class UserInfoControllerTest {
     @Test
     @DisplayName("UPDATE TEST")
     public void updateUserInfo() throws Exception{
+        //given
+        UserInfoDTO userinfoTestDTO = UserInfoDTO.builder(1,"kim", 33).build();
+        String updateName = "park";
 
+        given(userInfoTestService.updateUserInfo(updateName, userinfoTestDTO)).willReturn(userinfoTestDTO);
+        String content = objectMapper.writeValueAsString(userinfoTestDTO);
+
+        //when
+        final ResultActions actions = mvc.perform(put("/userinfo/{name}", updateName)
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                        .andDo(print());
+
+        //then
+        actions.andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.name", is("kim")))
+                .andExpect(jsonPath("$.age", is(33)))
+                .andDo(print());
     }
-
 
     @Test
     @DisplayName("DELETE BY NAME TEST")
