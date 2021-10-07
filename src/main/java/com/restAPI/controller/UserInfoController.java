@@ -3,6 +3,7 @@ package com.restAPI.controller;
 import com.restAPI.domain.model.UserInfo;
 import com.restAPI.dto.UserInfoDTO;
 import com.restAPI.service.UserInfoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,6 +15,7 @@ public class UserInfoController {
     }
 
     @PostMapping("/userinfo")
+    @ResponseStatus(HttpStatus.CREATED)
     public UserInfoDTO createUserInfo(@RequestBody UserInfoDTO userInfoDTO){
         return userInfoService.createUserInfo(userInfoDTO);
     }
@@ -24,6 +26,9 @@ public class UserInfoController {
     }
 
     @PutMapping("/userinfo/{name}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    //put은 보통 200, 204(no content)로 상태 표현
+    //no contetn 어노테이션 주니까 return 안 받음
     public UserInfoDTO updateUserInfo(@PathVariable String name, @RequestBody UserInfoDTO userInfoDTO){
         return userInfoService.updateUserInfo(name, userInfoDTO);
     }
