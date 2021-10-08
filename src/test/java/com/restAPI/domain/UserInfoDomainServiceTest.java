@@ -24,7 +24,6 @@ public class UserInfoDomainServiceTest {
 
     @Mock
     private UserInfoRepository userInfoTestRepository;
-    //https://lemontia.tistory.com/915
 
     @Test
     @DisplayName("get info test")
@@ -80,7 +79,9 @@ public class UserInfoDomainServiceTest {
         Assertions.assertEquals(42, userInfo.get().getAge());
     }
 
+
     @Test
     public void deleteUserInfo() {
+
     }
 }
