@@ -82,6 +82,6 @@ public class UserInfoDomainServiceTest {
 
     @Test
     public void deleteUserInfo() {
-
+        //void return 이라 데스트를 어떻게 할지 모르겠,,,
     }
 }
