@@ -19,16 +19,6 @@ public class UserInfoServiceTest {
     @Mock
     private UserInfoDomainService userInfoTestDomainService;
 
-
-    //public UserInfoDTO selectUserInfo(String name){
-    //        UserInfo userInfo = userInfoDomainService.getUserInfo(name);
-    //
-    //        UserInfoDTO userInfoDTO = UserInfoDTO.builder(userInfo.getId(), userInfo.getName(), userInfo.getAge())
-    //                .build();
-    //
-    //        return userInfoDTO;
-    //    }
-
     @Test
     public void selectUserInfo() {
         //given
@@ -44,15 +34,47 @@ public class UserInfoServiceTest {
         Assertions.assertEquals(1, testDTO.getId());
     }
 
-    @Test
-    public void createUserInfo() {
-    }
 
     @Test
+    public void createUserInfo() {
+        //given
+        UserInfoDTO userInfoDTO = UserInfoDTO.builder(1, "park", 24).build();
+        UserInfo userInfo = UserInfo.builder(userInfoDTO).build();
+        given(userInfoTestDomainService.createUserInfo(userInfo)).willReturn(userInfo);
+
+        //when
+        UserInfo testInfo = userInfoTestDomainService.createUserInfo(userInfo);
+
+        //then
+        Assertions.assertEquals(userInfo.getName(), testInfo.getName());
+        Assertions.assertEquals(userInfo.getAge(), testInfo.getAge());
+
+    }
+
+
+//    public UserInfoDTO updateUserInfo(String name, UserInfoDTO userInfoDTO){
+//        UserInfo userInfo = UserInfo.builder(userInfoDTO).build();
+//
+//        log.debug("userInfo created, id: " + userInfoDTO.getId());
+//        userInfoDomainService.updateUserInfo(userInfo);
+//        return userInfoDTO;
+//    }
+    @Test
     public void updateUserInfo() {
+        //given
+        UserInfoDTO userInfoDTO = UserInfoDTO.builder(1, "park", 24).build();
+        UserInfo userInfo = UserInfo.builder(userInfoDTO).build();
+
+        //when
+        userInfoTestDomainService.updateUserInfo(userInfo);
+
+        //then
+        Assertions.assertEquals("park", userInfoDTO.getName());
+
     }
 
     @Test
     public void deleteUserInfo() {
+        //void..
     }
 }
