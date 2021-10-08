@@ -17,7 +17,6 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 
-
 @RunWith(SpringRunner.class) //Junit4
 public class UserInfoDomainServiceTest {
 
@@ -31,11 +30,12 @@ public class UserInfoDomainServiceTest {
         //given
         UserInfo userInfo = UserInfo.builder(UserInfoDTO.builder(1, "park", 24 ).build()).build();
         String name = "park";
+
+        //!!!@Mock으로 주입했기 때문에 .willReturn 달아줘야함!!!
         given(userInfoTestRepository.findByName(name)).willReturn(Optional.ofNullable(userInfo));
 
         //when
         Optional<UserInfo> testUserInfo = userInfoTestRepository.findByName(name);
-        System.out.println(testUserInfo.get().getId());
 
         //then
         Assertions.assertEquals(1, testUserInfo.get().getId());
@@ -43,8 +43,19 @@ public class UserInfoDomainServiceTest {
 
     }
 
+
     @Test
     public void createUserInfo() {
+        //given
+        UserInfo userInfo = UserInfo.builder(UserInfoDTO.builder(1, "park", 24 ).build()).build();
+        given(userInfoTestRepository.save(userInfo)).willReturn(userInfo);
+
+        //when
+        UserInfo testInfo = userInfoTestRepository.save(userInfo);
+
+        //then
+        Assertions.assertEquals(1, testInfo.getId());
+
     }
 
     @Test
