@@ -3,6 +3,7 @@ package com.restAPI.domain;
 import com.restAPI.domain.model.UserInfo;
 import com.restAPI.domain.repository.UserInfoRepository;
 import com.restAPI.dto.UserInfoDTO;
+import org.apache.catalina.User;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 
 @RunWith(SpringRunner.class) //Junit4
 public class UserInfoDomainServiceTest {
@@ -58,8 +60,24 @@ public class UserInfoDomainServiceTest {
 
     }
 
+
     @Test
     public void updateUserInfo() {
+        //given
+        UserInfo updateInfo = UserInfo.builder(UserInfoDTO.builder(1, "lee", 42 ).build()).build();
+        UserInfo findInfo = UserInfo.builder(UserInfoDTO.builder(1, "park", 24 ).build()).build();
+        given(userInfoTestRepository.findById((long)1)).willReturn(Optional.of(findInfo));
+
+        //when
+        Optional<UserInfo> userInfo = userInfoTestRepository.findById((long)1);
+        userInfo.get().setId(updateInfo.getId());
+        userInfo.get().setName(updateInfo.getName());
+        userInfo.get().setAge(updateInfo.getAge());
+
+        //then
+        Assertions.assertEquals(1, userInfo.get().getId());
+        Assertions.assertEquals("lee", userInfo.get().getName());
+        Assertions.assertEquals(42, userInfo.get().getAge());
     }
 
     @Test
