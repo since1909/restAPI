@@ -51,14 +51,6 @@ public class UserInfoServiceTest {
 
     }
 
-
-//    public UserInfoDTO updateUserInfo(String name, UserInfoDTO userInfoDTO){
-//        UserInfo userInfo = UserInfo.builder(userInfoDTO).build();
-//
-//        log.debug("userInfo created, id: " + userInfoDTO.getId());
-//        userInfoDomainService.updateUserInfo(userInfo);
-//        return userInfoDTO;
-//    }
     @Test
     public void updateUserInfo() {
         //given
