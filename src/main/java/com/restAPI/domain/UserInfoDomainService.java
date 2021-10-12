@@ -3,11 +3,8 @@ package com.restAPI.domain;
 import com.restAPI.domain.model.UserInfo;
 import com.restAPI.domain.repository.UserInfoRepository;
 
-import com.restAPI.dto.UserInfoDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

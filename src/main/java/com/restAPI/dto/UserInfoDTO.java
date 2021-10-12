@@ -2,10 +2,8 @@ package com.restAPI.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 
 //UserInfoDto 클래스 생성 : 서비스와 컨트롤러 계층 데이터 전달
 //@Data : lombok을 사용하여 getter/setter 자동 생성

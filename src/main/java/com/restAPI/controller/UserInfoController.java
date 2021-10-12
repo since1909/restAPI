@@ -1,6 +1,5 @@
 package com.restAPI.controller;
 
-import com.restAPI.domain.model.UserInfo;
 import com.restAPI.dto.UserInfoDTO;
 import com.restAPI.service.UserInfoService;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,6 @@
 package com.restAPI.service;
 
 import com.restAPI.domain.UserInfoDomainService;
-import com.restAPI.domain.UserInfoDomainServiceTest;
 import com.restAPI.domain.model.UserInfo;
 import com.restAPI.dto.UserInfoDTO;
 import org.junit.Test;
