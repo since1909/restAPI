@@ -5,7 +5,6 @@ import com.restAPI.domain.model.UserInfo;
 import com.restAPI.dto.UserInfoDTO;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 //비지니스 로직을 구현.
